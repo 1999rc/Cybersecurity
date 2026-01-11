@@ -16,7 +16,7 @@ echo "-----------------------------------" >> "$LOG_FILE"
 
 
 echo "Memory:" >> "$LOG_FILE"
-free -h >> "$LOG_FILE"
+free -h  | awk 'NR==1 || NR==2' >> "$LOG_FILE"
 
 echo "Top Processes:" >> "$LOG_FILE"
 ps -eo pid,comm,%cpu,%mem --soft=-%cpu | head -6 >> "$LOG_FILE"
