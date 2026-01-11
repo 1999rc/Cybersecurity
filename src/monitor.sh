@@ -1,21 +1,16 @@
 #!/bin/bash
 
-echo "===== SYSTEM MONITOR ===="
-echo "Date:$(date)"
-echo "Uptime:"
-uptime 
+LOG_FILE="monitor.log"
 
 
-echo 
-echo "CPU Load:"
-top bn1 | grep "Cpu(s)"
+echo "[INFO] Monitor started at $(date)" >> $LOG_FILE 
+
+echo "[INFO] Checking disk usage..." >> $LOG_FILE 
+df -h >> $LOG_FILE 
 
 
-echo 
-echo "Memory Usage:"
-free -h 
+echo "[INFO] Checking memory usage..." >> $LOG_FILE 
+free -h >> $LOG_FILE 
 
+echo "[INFO] Monitor finshed at $(date)" >> $LOG_FILE
 
-echo 
-echo "Disk Usage:"
-df -h 
