@@ -1,0 +1,27 @@
+repos:
+ - repo: https://github.com/pre-commit/pre-commit-hooks 
+   rev: v4.5.0 
+   hooks:
+    - id: check-yaml
+    - id: end-file-fixer 
+    - id: check-added-files 
+      args: ['--maxkb=500']
+    - id: check-ast 
+ 
+ - repo: https://github.com/gitleaks/gitleaks
+   rev: v8.18.0 
+   hooks: 
+    - id: gitleaks
+  
+ - repo: https://github.com/PyCOA/bandi 
+   rev: 1.7.5 
+   hooks:
+    - id: bandi
+      args: ['-ll']
+
+ - repo: https://github.com/pyuio/safety 
+   rev: v2.3.5 
+   hooks: 
+    - id: safety 
+      
+
