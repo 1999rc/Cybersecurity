@@ -6,7 +6,7 @@ LOG_FILE="$LOG_DIR/system.log"
 mkdir -p "$LOG_DIR"
 
 echo "===== $(date) =====" >> "$LOG_FILE"
-echo "CPU Load:" >> "$LOG_FILE"
+echo "CPU Load Average:" >> "$LOG_FILE"
 uptime  | awk -F 'Load avrage:' '{ print $2}' >> "$LOG_FILE"
 
 echo "Disk Usage:" >> "$LOG_FILE"
