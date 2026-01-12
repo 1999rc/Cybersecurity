@@ -169,3 +169,6 @@ making it suitable for:
 * End-of-file fixes 
 
 * Large file
+## Feature Logging Update 
+- Added structured logging guidelines 
+- Prepared for centrailized log handling
