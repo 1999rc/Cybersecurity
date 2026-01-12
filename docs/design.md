@@ -63,19 +63,77 @@ Cybersecurity/
 * Collect basic system metrics (uptime,disk
   usage,memory,running processes)
 
-* Append structured output ot log files
+## System Monitoring Script Design 
 
-* Fail safely (no destructive commands)
+### Overview 
+This project includes a unified Bash-based system
+monitoring script 
+('scr/monitor.sh') designed to run Linux,WSL,
+and macOS (future-ready).
 
-Design choices:
+The script collects system health metrics and 
+writes them to a daily
+timestamped log file.
 
-* Bash for portability 
+---
 
-* Read-only system inspection 
+### OS Detection 
+At runtime,the script detects the operating
+system using 'uname' and 
+additional checks:
 
-* Simple,readable output format 
+- **Linux**: Standard Linux distributios 
+- **WSL**: Detected by checking '/proc/version'
+for Microsoft signatures 
+- **macOS**: Detected via 'uname -s=Darwin'
+
+This allows OS-specific logic while keeping a single
+script.
+
+--- 
+
+### Logging Architecture
+- Logs are written to:
+  '$HOME//logs/system_YYYY-MM-DD.log'
+- Each log entry is timestamped
+- No terminal output (silent by design)
+- Safe for cron and backgroud execution
+
+--- 
+
+### Metrics Collected 
+- Operating System & Kernil 
+- CPU usage ('/proc/stat')
+- Load avergae 
+- Memory usage 
+- Disk usage 
+- Top CPU-consuming processes 
+
+--- 
+
+### Reliability & Safety 
+- Usage 'set-euo pipefail' for strict error handling
+- Defensive OS checks prevent unsupported 
+command execution 
+- Designed to fail fast and log errors clearly 
+
+--- 
+
+### Automation Readiness
+The script is non-interactive and log-based,
+making it suitable for:
+- Cron jobs 
+- Scheduled monitoring 
+- Server environments
+
+---
+
 
 # 4.2 Logging (logs/)
+### Log Retention
+- Automation cleanup of log files older than 7 days 
+- Prevents disk overuse 
+- Cleanup executed during each monitoring run
 
 * Centralized logging directory 
 
